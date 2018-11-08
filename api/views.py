@@ -43,3 +43,14 @@ def home(request):
         form = DetailsForm()
 
     return render(request, 'api/home.html', {'form': form})
+
+
+def indi_url(request, username):
+
+    url = Url.objects.get(new_url=username)
+
+    print(url.old_url)
+
+    ans = url.old_url
+
+    return HttpResponseRedirect(ans)

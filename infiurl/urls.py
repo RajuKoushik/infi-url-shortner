@@ -5,10 +5,12 @@ from django.views.generic.base import RedirectView
 from api import views
 from django.contrib.staticfiles.storage import staticfiles_storage
 
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include('api.urls', namespace='api')),
     url(r'^$', RedirectView.as_view(url='home/')),
     url(r'^home/', views.home, name='home'),
+    url(r'^(?P<username>[0-9]+)/$', views.indi_url, name='indi_post'),
 
 ]
