@@ -3,7 +3,7 @@ from django.utils import timezone
 
 
 class Url(models.Model):
-    old_url = models.CharField(max_length=2000)
+    old_url = models.CharField(max_length=2000,unique=True)
     new_url = models.CharField(max_length=2000)
     created_date = models.DateTimeField(default=timezone.now)
 
