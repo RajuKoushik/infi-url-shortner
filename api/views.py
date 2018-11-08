@@ -10,7 +10,9 @@ import requests
 import json
 import hashlib
 
+from .models import Url
 import random
+from . import models
 
 
 def home(request):
@@ -27,9 +29,16 @@ def home(request):
             print(int(hashlib.sha1(form.cleaned_data['username'].encode('utf-8')).hexdigest(), 16) % (10 ** 8))
             hash = int(hashlib.sha1(form.cleaned_data['username'].encode('utf-8')).hexdigest(), 16) % (10 ** 8)
 
-            return HttpResponseRedirect('/' + str(hash) + '/')
+            url = models.Url()
+            url.old_url = form.cleaned_data['username']
+            url.new_url = hash
+            url.save()
+            print(url.new_url)
 
-    # if a GET (or any other method) we'll create a blank form
+            url_all = Url.objects.all()
+            print((url_all))
+            return render(request, 'api/home.html', {'url': hash, 'form': form, 'model':url_all})
+
     else:
         form = DetailsForm()
 

@@ -2,4 +2,15 @@
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Submit">
+
+
 </form>
+
+{% for indi in model %}
+
+
+
+    <h2 id="btitle" class="hvr-float"><a href="{{ indi.old_url }} "
+                                         style="color:#bc873e "><strong>{{ indi.new_url }}</strong></a></h2>
+
+{% endfor %}
