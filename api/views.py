@@ -26,8 +26,8 @@ def home(request):
             # ...
             print(form.cleaned_data['username'])
 
-            print(int(hashlib.sha1(form.cleaned_data['username'].encode('utf-8')).hexdigest(), 16) % (10 ** 9))
-            hash = int(hashlib.sha1(form.cleaned_data['username'].encode('utf-8')).hexdigest(), 16) % (10 ** 9)
+            print(int(hashlib.sha1(form.cleaned_data['username'].encode('utf-8')).hexdigest(), 16) % (10 ** 4))
+            hash = int(hashlib.sha1(form.cleaned_data['username'].encode('utf-8')).hexdigest(), 16) % (10 ** 4)
 
             url = models.Url()
             url.old_url = form.cleaned_data['username']
